@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Solr Tutorial : This page describes installation of the Solr with Jetty (for many different projects on a server)." />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Solr Tutorial</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/speranskydanil/solr-tutorial">View on GitHub</a>
+
+          <h1 id="project_title">Solr Tutorial</h1>
+          <h2 id="project_tagline">This page describes installation of the Solr with Jetty (for many different projects on a server).</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/speranskydanil/solr-tutorial/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/speranskydanil/solr-tutorial/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a name="solr-tutorial" class="anchor" href="#solr-tutorial"><span class="octicon octicon-link"></span></a>Solr Tutorial</h1>
+
+<p>This page describes installation of the Solr with Jetty (for many different projects on a server).</p>
+
+<p>It's not multicore configuration: one project -- one Solr instance running with Jetty.</p>
+
+<h3>
+<a name="installing-java" class="anchor" href="#installing-java"><span class="octicon octicon-link"></span></a>Installing Java</h3>
+
+<pre><code>yum install java-1.7.0-openjdk-devel
+</code></pre>
+
+<h3>
+<a name="installing-solr" class="anchor" href="#installing-solr"><span class="octicon octicon-link"></span></a>Installing Solr</h3>
+
+<pre><code>cd /usr/share
+wget http://apache-mirror.rbc.ru/pub/apache/lucene/solr/4.4.0/solr-4.4.0.zip
+unzip solr-4.4.0.zip
+rm solr-4.4.0.zip
+mv solr-4.4.0 solr
+</code></pre>
+
+<h3>
+<a name="creating-instance-example" class="anchor" href="#creating-instance-example"><span class="octicon octicon-link"></span></a>Creating Instance Example</h3>
+
+<pre><code>cd /usr/share/solr
+mkdir instances
+cp -R example instances/example
+cd instances/example
+rm -R README.txt multicore example-DIH exampledocs example-schemaless
+cp /path/to/schema/from/repo/schema.xml solr/collection1/conf/schema.xml
+vim start.sh
+chmod +x start.sh
+vim stop.sh
+chmod +x stop.sh
+</code></pre>
+
+<p>Pay attention to <code>/path/to/schema/from/repo/schema.xml</code></p>
+
+<p><strong>start.sh</strong></p>
+
+<pre><code>#!/bin/bash
+
+nohup java -jar start.jar &gt; logs/jetty.log 2&gt;&amp;1 &amp;
+echo $! &gt; jetty.pid
+</code></pre>
+
+<p><strong>stop.sh</strong></p>
+
+<pre><code>#!/bin/bash
+
+kill -9 `cat jetty.pid`
+rm jetty.pid
+</code></pre>
+
+<h3>
+<a name="creating-new-instance" class="anchor" href="#creating-new-instance"><span class="octicon octicon-link"></span></a>Creating New Instance</h3>
+
+<pre><code>cd /usr/share/solr/instances
+cp -R example vsp
+cd vsp
+grep -rl '8983' ./ | xargs sed -i 's/8983/port/g'
+./start.sh
+./stop.sh
+</code></pre>
+
+<p>Pay attention to <code>port</code> (it can be 8981 for example)</p>
+
+<h2>
+<a name="rails-configuration" class="anchor" href="#rails-configuration"><span class="octicon octicon-link"></span></a>Rails Configuration</h2>
+
+<h3>
+<a name="configsunspotyml" class="anchor" href="#configsunspotyml"><span class="octicon octicon-link"></span></a>config/sunspot.yml</h3>
+
+<pre><code>production:
+  solr:
+    hostname: localhost
+    port: 8981
+    log_level: WARNING
+    path: /solr
+
+development:
+  solr:
+    hostname: localhost
+    port: 8981
+    log_level: INFO
+    path: /solr
+</code></pre>
+
+<h3>
+<a name="reindexing" class="anchor" href="#reindexing"><span class="octicon octicon-link"></span></a>Reindexing</h3>
+
+<pre><code>rake sunspot:solr:reindex
+</code></pre>
+
+<p><strong>Author (Speransky Danil):</strong>
+<a href="http://dsperansky.info">Personal Page</a> |
+<a href="http://ru.linkedin.com/in/speranskydanil/en">LinkedIn</a> |
+<a href="https://github.com/speranskydanil?tab=repositories">GitHub</a> |
+<a href="http://stackoverflow.com/users/1550807/speransky-danil">StackOverflow</a></p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Solr Tutorial maintained by <a href="https://github.com/speranskydanil">speranskydanil</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
