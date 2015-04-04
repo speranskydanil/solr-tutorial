@@ -1,51 +1,39 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en-us">
   <head>
-    <meta charset='utf-8' />
-    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <meta name="description" content="Solr Tutorial : This page describes installation of the Solr with Jetty (for many different projects on a server)." />
-
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-
-    <title>Solr Tutorial</title>
+    <meta charset="UTF-8">
+    <title>Solr Tutorial by speranskydanil</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
   </head>
-
   <body>
+    <section class="page-header">
+      <h1 class="project-name">Solr Tutorial</h1>
+      <h2 class="project-tagline">This page describes installation of the Solr with Jetty (for many different projects on a server).</h2>
+      <a href="https://github.com/speranskydanil/solr-tutorial" class="btn">View on GitHub</a>
+      <a href="https://github.com/speranskydanil/solr-tutorial/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/speranskydanil/solr-tutorial/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
 
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/speranskydanil/solr-tutorial">View on GitHub</a>
-
-          <h1 id="project_title">Solr Tutorial</h1>
-          <h2 id="project_tagline">This page describes installation of the Solr with Jetty (for many different projects on a server).</h2>
-
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/speranskydanil/solr-tutorial/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/speranskydanil/solr-tutorial/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
-    </div>
-
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h1>
-<a name="solr-tutorial" class="anchor" href="#solr-tutorial"><span class="octicon octicon-link"></span></a>Solr Tutorial</h1>
+    <section class="main-content">
+      <h1>
+<a id="solr-tutorial" class="anchor" href="#solr-tutorial" aria-hidden="true"><span class="octicon octicon-link"></span></a>Solr Tutorial</h1>
 
 <p>This page describes installation of the Solr with Jetty (for many different projects on a server).</p>
 
 <p>It's not multicore configuration: one project -- one Solr instance running with Jetty.</p>
 
 <h3>
-<a name="installing-java" class="anchor" href="#installing-java"><span class="octicon octicon-link"></span></a>Installing Java</h3>
+<a id="installing-java" class="anchor" href="#installing-java" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installing Java</h3>
 
 <pre><code>yum install java-1.7.0-openjdk-devel
 </code></pre>
 
 <h3>
-<a name="installing-solr" class="anchor" href="#installing-solr"><span class="octicon octicon-link"></span></a>Installing Solr</h3>
+<a id="installing-solr" class="anchor" href="#installing-solr" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installing Solr</h3>
 
 <pre><code>cd /usr/share
 wget http://apache-mirror.rbc.ru/pub/apache/lucene/solr/4.4.0/solr-4.4.0.zip
@@ -55,7 +43,7 @@ mv solr-4.4.0 solr
 </code></pre>
 
 <h3>
-<a name="creating-instance-example" class="anchor" href="#creating-instance-example"><span class="octicon octicon-link"></span></a>Creating Instance Example</h3>
+<a id="creating-instance-example" class="anchor" href="#creating-instance-example" aria-hidden="true"><span class="octicon octicon-link"></span></a>Creating Instance Example</h3>
 
 <pre><code>cd /usr/share/solr
 mkdir instances
@@ -88,7 +76,7 @@ rm jetty.pid
 </code></pre>
 
 <h3>
-<a name="creating-new-instance" class="anchor" href="#creating-new-instance"><span class="octicon octicon-link"></span></a>Creating New Instance</h3>
+<a id="creating-new-instance" class="anchor" href="#creating-new-instance" aria-hidden="true"><span class="octicon octicon-link"></span></a>Creating New Instance</h3>
 
 <pre><code>cd /usr/share/solr/instances
 cp -R example vsp
@@ -101,10 +89,10 @@ grep -rl '8983' ./ | xargs sed -i 's/8983/port/g'
 <p>Pay attention to <code>port</code> (it can be 8981 for example)</p>
 
 <h2>
-<a name="rails-configuration" class="anchor" href="#rails-configuration"><span class="octicon octicon-link"></span></a>Rails Configuration</h2>
+<a id="rails-configuration" class="anchor" href="#rails-configuration" aria-hidden="true"><span class="octicon octicon-link"></span></a>Rails Configuration</h2>
 
 <h3>
-<a name="configsunspotyml" class="anchor" href="#configsunspotyml"><span class="octicon octicon-link"></span></a>config/sunspot.yml</h3>
+<a id="configsunspotyml" class="anchor" href="#configsunspotyml" aria-hidden="true"><span class="octicon octicon-link"></span></a>config/sunspot.yml</h3>
 
 <pre><code>production:
   solr:
@@ -122,7 +110,7 @@ development:
 </code></pre>
 
 <h3>
-<a name="reindexing" class="anchor" href="#reindexing"><span class="octicon octicon-link"></span></a>Reindexing</h3>
+<a id="reindexing" class="anchor" href="#reindexing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Reindexing</h3>
 
 <pre><code>rake sunspot:solr:reindex
 </code></pre>
@@ -132,18 +120,16 @@ development:
 <a href="http://ru.linkedin.com/in/speranskydanil/en">LinkedIn</a> |
 <a href="https://github.com/speranskydanil?tab=repositories">GitHub</a> |
 <a href="http://stackoverflow.com/users/1550807/speransky-danil">StackOverflow</a></p>
-      </section>
-    </div>
 
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Solr Tutorial maintained by <a href="https://github.com/speranskydanil">speranskydanil</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/speranskydanil/solr-tutorial">Solr Tutorial</a> is maintained by <a href="https://github.com/speranskydanil">speranskydanil</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
       </footer>
-    </div>
 
-              <script type="text/javascript">
+    </section>
+
+            <script type="text/javascript">
             var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
             document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
           </script>
@@ -154,6 +140,6 @@ development:
             } catch(err) {}
           </script>
 
-
   </body>
 </html>
+
