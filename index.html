@@ -94,20 +94,19 @@ grep -rl '8983' ./ | xargs sed -i 's/8983/port/g'
 <h3>
 <a id="configsunspotyml" class="anchor" href="#configsunspotyml" aria-hidden="true"><span class="octicon octicon-link"></span></a>config/sunspot.yml</h3>
 
-<pre><code>production:
-  solr:
-    hostname: localhost
-    port: 8981
-    log_level: WARNING
-    path: /solr
+<div class="highlight highlight-yaml"><pre><span class="pl-s"><span class="pl-ent">production:</span></span>
+  <span class="pl-s"><span class="pl-ent">solr:</span></span>
+    <span class="pl-s"><span class="pl-ent">hostname:</span> <span class="pl-s">localhost</span></span>
+    <span class="pl-c1"><span class="pl-ent">port:</span> 8981</span>
+    <span class="pl-s"><span class="pl-ent">log_level:</span> <span class="pl-s">WARNING</span></span>
+    <span class="pl-s"><span class="pl-ent">path:</span> <span class="pl-s">/solr</span></span>
 
-development:
-  solr:
-    hostname: localhost
-    port: 8981
-    log_level: INFO
-    path: /solr
-</code></pre>
+<span class="pl-s"><span class="pl-ent">development:</span></span>
+  <span class="pl-s"><span class="pl-ent">solr:</span></span>
+    <span class="pl-s"><span class="pl-ent">hostname:</span> <span class="pl-s">localhost</span></span>
+    <span class="pl-c1"><span class="pl-ent">port:</span> 8981</span>
+    <span class="pl-s"><span class="pl-ent">log_level:</span> <span class="pl-s">INFO</span></span>
+    <span class="pl-s"><span class="pl-ent">path:</span> <span class="pl-s">/solr</span></span></pre></div>
 
 <h3>
 <a id="reindexing" class="anchor" href="#reindexing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Reindexing</h3>
