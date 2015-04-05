@@ -60,19 +60,21 @@ Pay attention to `port` (it can be 8981 for example)
 
 ### config/sunspot.yml
 
-    production:
-      solr:
-        hostname: localhost
-        port: 8981
-        log_level: WARNING
-        path: /solr
+```yaml
+production:
+  solr:
+    hostname: localhost
+    port: 8981
+    log_level: WARNING
+    path: /solr
 
-    development:
-      solr:
-        hostname: localhost
-        port: 8981
-        log_level: INFO
-        path: /solr
+development:
+  solr:
+    hostname: localhost
+    port: 8981
+    log_level: INFO
+    path: /solr
+```
 
 ### Reindexing
 
